@@ -20,7 +20,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       );
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        print(httpResponse.response.data);
+        // print(httpResponse.response.data);
         return DataSuccess(httpResponse.data);
       } else {
         return DataFailed(DioException(

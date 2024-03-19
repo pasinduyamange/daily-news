@@ -37,11 +37,9 @@ class DailyNews extends StatelessWidget {
       if (state is RemoteArticlesDone) {
         return ListView.builder(
           itemBuilder: (context, index) {
-            // return ArticleWidget(
-            //   article: state.articles![index],
-            // );
-            // return Text('testing');
-            return Text('testing');
+            return ArticleWidget(
+              article: state.articles![index],
+            );
           },
           itemCount: state.articles!.length,
         );
