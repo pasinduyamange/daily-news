@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: unused_element
+
 part of 'news_api_service.dart';
 
 // **************************************************************************
@@ -53,7 +55,8 @@ class _NewsApiService implements NewsApiService {
               baseUrl,
             ))));
     List<ArticleModel> value = _result.data!['articles']
-        .map<ArticleModel>((dynamic i) => ArticleModel.fromJson(i as Map<String, dynamic>))
+        .map<ArticleModel>(
+            (dynamic i) => ArticleModel.fromJson(i as Map<String, dynamic>))
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;

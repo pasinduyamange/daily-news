@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +54,7 @@ class ArticleWidget extends StatelessWidget {
           ),
         ),
       ),
+      // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
       progressIndicatorBuilder: (context, url, DownloadProgress) => Padding(
         padding: const EdgeInsetsDirectional.only(end: 14),
         child: ClipRRect(

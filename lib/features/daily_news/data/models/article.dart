@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters
+
 import 'package:floor/floor.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 
