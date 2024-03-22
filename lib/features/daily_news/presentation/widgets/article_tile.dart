@@ -5,11 +5,13 @@ import 'package:news_app/features/daily_news/domain/entities/article.dart';
 
 class ArticleWidget extends StatelessWidget {
   final ArticleEntity? article;
+  final void Function(ArticleEntity article)? onArticlePressed;
 
   // ignore: use_super_parameters
   const ArticleWidget({
     Key? key,
     this.article,
+    this.onArticlePressed,
   }) : super(key: key);
 
   @override
@@ -17,11 +19,18 @@ class ArticleWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsetsDirectional.only(start: 14, end: 14, bottom: 14),
       height: MediaQuery.of(context).size.width / 2.2,
-      child: Row(
-        children: [
-          _buildImage(context),
-          _buildTitleAndDescription(),
-        ],
+      child: GestureDetector(
+        onTap: () {
+          if (onArticlePressed != null) {
+            onArticlePressed!(article!);
+          }
+        },
+        child: Row(
+          children: [
+            _buildImage(context),
+            _buildTitleAndDescription(),
+          ],
+        ),
       ),
     );
   }

@@ -12,12 +12,12 @@ class DailyNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppbar(),
+      appBar: _buildAppbar(context),
       body: _buildBody(),
     );
   }
 
-  _buildAppbar() {
+  PreferredSizeWidget _buildAppbar(BuildContext context) {
     return AppBar(
       title: const Text(
         'Daily News',
@@ -25,9 +25,9 @@ class DailyNews extends StatelessWidget {
       ),
       actions: [
         GestureDetector(
-          onTap: ()=> _onShowSavedArticlesViewTapped(),
+          onTap: () => _onShowSavedArticlesViewTapped(context),
           child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14),
             child: Icon(Icons.bookmark, color: Colors.black),
           ),
         ),
@@ -35,27 +35,27 @@ class DailyNews extends StatelessWidget {
     );
   }
 
-  _buildBody() {
+  Widget _buildBody() {
     return BlocBuilder<RemoteAticlesBloc, RemoteArticleState>(
-        builder: (_, state) {
-      if (state is RemoteArticlesLoading) {
-        return const Center(child: CupertinoActivityIndicator());
-      }
-      if (state is RemoteArticlesError) {
-        return const Center(child: Icon(Icons.refresh));
-      }
-      if (state is RemoteArticlesDone) {
-        return ListView.builder(
-          itemBuilder: (context, index) {
-            return ArticleWidget(
-              article: state.articles![index],
-            );
-          },
-          itemCount: state.articles!.length,
-        );
-      }
-      return const SizedBox();
-    },
+      builder: (_, state) {
+        if (state is RemoteArticlesLoading) {
+          return const Center(child: CupertinoActivityIndicator());
+        }
+        if (state is RemoteArticlesError) {
+          return const Center(child: Icon(Icons.refresh));
+        }
+        if (state is RemoteArticlesDone) {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return ArticleWidget(
+                article: state.articles![index],
+              );
+            },
+            itemCount: state.articles!.length,
+          );
+        }
+        return const SizedBox();
+      },
     );
   }
 

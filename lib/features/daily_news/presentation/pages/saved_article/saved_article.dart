@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
-import 'package:news_app/features/daily_news/domain/usecases/get_saved_article.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_state.dart';
@@ -17,8 +17,7 @@ class SavedArticles extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          sl<LocalArticleBloc>()..add(const GetSavedArticleUseCase()),
+      create: (_) => sl<LocalArticleBloc>()..add(const GetSavedArticles()),
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(),
@@ -68,8 +67,8 @@ class SavedArticles extends HookWidget {
       itemBuilder: (context, index) {
         return ArticleWidget(
           article: articles[index],
-          isRemovable: true,
-          onRemove: (article) => _onRemoveArticle(context, article),
+          // isRemovable: true,
+          // onRemove: (article) => _onRemoveArticle(context, article),
           onArticlePressed: (article) => _onArticlePressed(context, article),
         );
       },

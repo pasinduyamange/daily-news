@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:news_app/features/daily_news/domain/entities/article.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
 import 'package:news_app/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
@@ -8,14 +9,14 @@ import 'package:news_app/features/daily_news/presentation/bloc/article/local/loc
 import '../../../../../injection_container.dart';
 
 class ArticleDetailsView extends HookWidget {
-  final ArticleEntity ? article;
+  final ArticleEntity? article;
 
   const ArticleDetailsView({Key? key, this.article}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => sl<LocalArticleBloc>(),
+      create: (_) => sl<LocalArticleBloc>(),
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(),
@@ -28,10 +29,12 @@ class ArticleDetailsView extends HookWidget {
     return AppBar(
       leading: Builder(
         builder: (context) => GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => _onBackButtonTapped(context),
-          child: const Icon(Ionicons.chevron_back, color: Colors.black,)
-        ),
+            behavior: HitTestBehavior.opaque,
+            onTap: () => _onBackButtonTapped(context),
+            child: const Icon(
+              Ionicons.chevron_back,
+              color: Colors.black,
+            )),
       ),
     );
   }
@@ -50,7 +53,7 @@ class ArticleDetailsView extends HookWidget {
 
   Widget _buildArticleTitleAndDate() {
     return Padding(
-       padding: const EdgeInsets.symmetric(horizontal: 22),
+      padding: const EdgeInsets.symmetric(horizontal: 22),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,7 +61,7 @@ class ArticleDetailsView extends HookWidget {
           Text(
             article!.title!,
             style: const TextStyle(fontFamily: 'Butler', fontSize: 20),
-          )
+          ),
 
           const SizedBox(height: 14),
           //DateTime
@@ -99,7 +102,7 @@ class ArticleDetailsView extends HookWidget {
   Widget _buildFloatingActionButton() {
     return Builder(
       builder: (context) => FloatingActionButton(
-          onPressed: () => _onFloatingActionButtonPressed(context),
+        onPressed: () => _onFloatingActionButtonPressed(context),
         child: const Icon(Ionicons.bookmark, color: Colors.white),
       ),
     );
@@ -111,10 +114,10 @@ class ArticleDetailsView extends HookWidget {
 
   void _onFloatingActionButtonPressed(BuildContext context) {
     BlocProvider.of<LocalArticleBloc>(context).add(SaveArticle(article!));
-    Scaffold.of(context).showSnackBar (
+    ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         backgroundColor: Colors.black,
-          content: Text('Article saved successfully.'),
+        content: Text('Article saved successfully.'),
       ),
     );
   }
