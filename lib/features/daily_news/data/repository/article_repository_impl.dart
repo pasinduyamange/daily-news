@@ -11,7 +11,7 @@ import 'package:news_app/features/daily_news/domain/repository/article_repositor
 class ArticleRepositoryImpl implements ArticleRepository {
   final NewsApiService _newsApiService;
   final AppDatabase _appDatabase;
-  ArticleRepositoryImpl(this._newsApiService,this._appDatabase);
+  ArticleRepositoryImpl(this._newsApiService, this._appDatabase);
 
   @override
   Future<DataState<List<ArticleModel>>> getNewsArticles() async {
@@ -44,11 +44,13 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
   @override
   Future<void> removeArticle(ArticleEntity article) {
-    return _appDatabase.articleDAO.deleteArticle(ArticleModel.fromEntity(article));
+    return _appDatabase.articleDAO
+        .deleteArticle(ArticleModel.fromEntity(article));
   }
 
   @override
   Future<void> saveArticle(ArticleEntity article) {
-    return _appDatabase.articleDAO.insertArticle(ArticleModel.fromEntity(article));
+    return _appDatabase.articleDAO
+        .insertArticle(ArticleModel.fromEntity(article));
   }
 }

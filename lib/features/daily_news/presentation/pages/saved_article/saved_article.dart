@@ -69,8 +69,8 @@ class SavedArticles extends HookWidget {
       itemBuilder: (context, index) {
         return ArticleWidget(
           article: articles[index],
-          // isRemovable: true,
-          // onRemove: (article) => _onRemoveArticle(context, article),
+          isRemovable: true,
+          onRemove: (article) => _onRemoveArticle(context, article),
           onArticlePressed: (article) => _onArticlePressed(context, article),
         );
       },
